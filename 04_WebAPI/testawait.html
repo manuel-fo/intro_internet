@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test Web API</title>
+</head>
+<body>
+    <button onclick="x = saveData();console.log('done'+x)">Save Data</button>
+    <button onclick="getData()">Retrive Data</button>
+    <script>
+        async function saveData() {
+            let storeme = {x:1, y:2, z:"hello world"};
+            let config = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(storeme),
+            }
+            let response = await fetch('https://api.myjson.com/bins/', config);
+            let data = await response.json();
+            console.log(data.uri)
+            // function will return before the alert is called!  returning a promise
+        }
+        //fetch('https://publish.twitter.com/oembed?url=https://twitter.com/Interior/status/463440424141459456', init)
+        //fetch('https://api.ratesapi.io/api/latest?base=USD', init)
+        //fetch('http://api.tvmaze.com/search/shows?q=star%20trek', init)
+        //fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/voluminous?key=642b3daa-a661-4896-8772-3bf6afe0989f')
+
+        async function getData() {
+            let init = {
+                method: 'GET',
+                mode: 'cors'
+            }
+            let response = await fetch('https://api.myjson.com/bins/ukqlb')
+            let data = await response.json();
+            console.log(data)
+        }
+
+        saveData();
+        console.log("hello")
+        getData();
+        console.log("world")
+    </script>
+</body>
+</html>

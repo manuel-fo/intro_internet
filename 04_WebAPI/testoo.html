@@ -1,0 +1,18 @@
+<html>
+<script src="saver.js"></script>
+
+<button id="saver">Save</button>
+<button id="getter">Get</button>
+
+<script>
+    hSaver  = new RestHistory();
+    var saveButton = document.getElementById("saver")
+    var getButton = document.getElementById("getter")
+    saveButton.onclick = function() {
+        hSaver.saveHistory({x:1, y:2, z:"hello world"});
+    }
+    getButton.onclick = hSaver.getHistory.bind(hSaver);
+</script>
+
+
+</html>

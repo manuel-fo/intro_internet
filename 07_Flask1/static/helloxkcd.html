@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Hello XKCD</title>
+    </head>
+    <body>
+        <h1>Hello XKCD</h1>
+        <div id = "comiccontainer"></div>
+        <script type="text/javascript">
+            async function getxkcd() {
+                let init = {
+                    mode: 'cors',
+                    method: 'GET',
+                }
+                //let resp = await fetch("https://xkcd.com/353/info.0.json", init);
+                let resp = await fetch("/xkcd/353", init);
+                return resp.json();
+            }
+
+            async function main() {
+                let p = await getxkcd();
+                console.log(Object.keys(p));
+                console.log(p)
+                let img = document.createElement('img')
+                img.src = p.img;
+                let div = document.getElementById("comiccontainer")
+                div.appendChild(img)
+
+            }
+            main()
+        </script>
+    </body>
+</html>

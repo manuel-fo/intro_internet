@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main>
+        <div>
+            <label for="rname">Restaurant Name</label>
+            <input type="text" id="rname">
+        </div>
+        <div>
+    <label for="billamt">Bill $</label>
+    <input type="text" id="billamt" oninput="calculateTotal(this)">
+    </div>
+    <div>
+    <label for="tippct">Tip %</label>
+    <input type="range" min="5" max="30" id="tippct" oninput="updateSlider(); calculateTotal(this);"> <span id="tipval"></span>
+    </div>
+    <div>
+    <label for="people">Number of People</label>
+    <select id="people" onchange="calculateTotal(this)">
+        <option value="1">one</option>
+        <option value="2">two</option>
+        <option value="3">three</option>
+        <option value="4">four</option>
+    </select>
+    </div>
+
+    <div>
+        Amount to Pay <span id="payamt"></span>
+    </div>
+        <button onclick="saveHistory()">Save</button>
+
+    </main>
+
+    <div class='tiphist'>
+    <table id="historytable">
+    </table>
+    </div>
+
+    <script src="controller.js"></script>
+    <script src="restaurants.js"></script>
+    <script src="view.js"></script>
+    <script>
+        "use strict";
+        var model = new RestHistory();
+        var view = new RestView(model);
+
+    </script>
+
+</body>
+</html>
